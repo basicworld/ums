@@ -13,5 +13,6 @@ public interface OrganizationService {
 	int deleteById(int id);
 	
 	int update(Organization o);
+	int insert(Organization o);
 
 }

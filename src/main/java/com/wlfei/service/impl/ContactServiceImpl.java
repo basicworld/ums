@@ -54,6 +54,12 @@ public class ContactServiceImpl implements ContactService {
 		return contactMapper.updateByPrimaryKeySelective(c);
 	}
 
+	@Override
+	public int insert(Contact c) {
+		// TODO Auto-generated method stub
+		return contactMapper.insert(c);
+	}
+
 	
 
 }

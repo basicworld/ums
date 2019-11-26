@@ -59,4 +59,15 @@ public class OrganizationServiceImpl implements OrganizationService {
 		return organizationMapper.fuzzySelectByKeyword(keyword);
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public int insert(Organization o) {
+		// TODO Auto-generated method stub
+		int result = organizationMapper.insertSelective(o);
+		Contact c = o.getContact();
+		c.setOid(o.getId());
+		contactService.insert(c);
+		return result;
+	}
+
 }

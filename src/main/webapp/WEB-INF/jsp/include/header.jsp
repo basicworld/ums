@@ -10,6 +10,7 @@
 
 <head>
 <link rel="stylesheet" href="layui/css/layui.css">
+<link rel="stylesheet" href="css/style.css">
 <script src="layui/layui.js"></script>
 <script>
 	layui.config({

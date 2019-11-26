@@ -38,7 +38,7 @@ public class MainController {
 	@RequestMapping(value = "orgQuery", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String queryOrg(Pager pager, String keyword) {
-		System.out.println("keyword>>>"+keyword);
+		System.out.println("keyword>>>" + keyword);
 		PageHelper.startPage(pager.getPage(), pager.getLimit());
 
 		List<Organization> os = organizationService.list(keyword);
@@ -114,6 +114,31 @@ public class MainController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("code", 0);
 		jsonObject.put("msg", "更新成功");
+		return jsonObject.toString();
+
+	}
+
+	@RequestMapping(value = "orgAdd", produces = "application/json; charset=utf-8", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	@ResponseBody
+	public String orgAdd(Organization o, @RequestParam("contact_name") String contact_name,
+			@RequestParam("contact_email") String contact_email, @RequestParam("contact_phone") String contact_phone,
+			@RequestParam("contact_address") String contact_address) {
+		System.out.println(o);
+
+		Contact c = new Contact();
+		c.setName(contact_name);
+		c.setEmail(contact_email);
+		c.setPhone(contact_phone);
+		c.setAddress(contact_address);
+		o.setContact(c);
+		organizationService.insert(o);
+
+		
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("code", 0);
+		jsonObject.put("msg", "新增成功【" + o.getId() + "】");
 		return jsonObject.toString();
 
 	}

@@ -17,5 +17,6 @@ public interface ContactService {
 	int deleteById(int id);
 	
 	int update(Contact c);
+	int insert(Contact c);
 	
 }
