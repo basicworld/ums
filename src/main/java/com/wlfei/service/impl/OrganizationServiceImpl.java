@@ -31,15 +31,32 @@ public class OrganizationServiceImpl implements OrganizationService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void deleteById(int id) {
+	public int deleteById(int id) {
 		List<Contact> cs = contactService.selectByOid(id);
 		if (null != cs && cs.size() > 0) {
 			for (Contact c : cs) {
 				contactService.deleteById(c.getId());
 			}
 		}
-		organizationMapper.deleteByPrimaryKey(id);
+		return organizationMapper.deleteByPrimaryKey(id);
 
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public int update(Organization o) {
+		// TODO Auto-generated method stub
+		Contact c = o.getContact();
+		contactService.update(c);
+		return organizationMapper.updateByPrimaryKeySelective(o);
+	}
+
+	@Override
+	public List<Organization> list(String keyword) {
+		if(null==keyword || keyword.length()==0) {
+			return list();
+		}
+		return organizationMapper.fuzzySelectByKeyword(keyword);
 	}
 
 }

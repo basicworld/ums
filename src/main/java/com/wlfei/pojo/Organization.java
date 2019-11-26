@@ -1,18 +1,6 @@
 package com.wlfei.pojo;
 
-import java.util.List;
-
 public class Organization {
-	private Integer id;
-
-	private String fullname;
-
-	private String briefname;
-
-	private String orgcode;
-
-	private String logolocation;
-
 	private Contact contact;
 
 	public Contact getContact() {
@@ -22,6 +10,16 @@ public class Organization {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
+
+	private Integer id;
+
+	private String fullname;
+
+	private String briefname;
+
+	private String orgcode;
+
+	private String logolocation;
 
 	public Integer getId() {
 		return id;
@@ -62,11 +60,4 @@ public class Organization {
 	public void setLogolocation(String logolocation) {
 		this.logolocation = logolocation == null ? null : logolocation.trim();
 	}
-
-	@Override
-	public String toString() {
-		return "Organization [id=" + id + ", fullname=" + fullname + ", briefname=" + briefname + ", orgcode=" + orgcode
-				+ ", logolocation=" + logolocation + ", contact=" + contact + "]";
-	}
-	
 }

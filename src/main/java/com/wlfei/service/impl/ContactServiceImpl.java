@@ -42,10 +42,16 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	@Override
-	public void deleteById(int id) {
+	public int deleteById(int id) {
 		// TODO Auto-generated method stub
-		contactMapper.deleteByPrimaryKey(id);
+		return contactMapper.deleteByPrimaryKey(id);
 		
+	}
+
+	@Override
+	public int update(Contact c) {
+		// TODO Auto-generated method stub
+		return contactMapper.updateByPrimaryKeySelective(c);
 	}
 
 	

@@ -14,6 +14,8 @@ public interface ContactService {
 	// 为列表中的机构 填写联系人
 	void fill(List<Organization> os);
 	// 根据id删除联系人
-	void deleteById(int id);
+	int deleteById(int id);
+	
+	int update(Contact c);
 	
 }

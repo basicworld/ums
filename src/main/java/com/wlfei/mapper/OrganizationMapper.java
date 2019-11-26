@@ -12,6 +12,7 @@ public interface OrganizationMapper {
     int insertSelective(Organization record);
 
     List<Organization> selectByExample(OrganizationExample example);
+    List<Organization> fuzzySelectByKeyword(String keyword);
 
     Organization selectByPrimaryKey(Integer id);
 

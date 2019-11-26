@@ -42,7 +42,7 @@
 		</javaClientGenerator>
 
 		<!--生成对应表及类名 -->
-		<!-- <table tableName="org_info" domainObjectName="Organization"
+		<!--  <table tableName="org_info" domainObjectName="Organization"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="true"
 			selectByExampleQueryId="false">
@@ -52,7 +52,7 @@
 
 		</table>-->
 
-		<table tableName="org_contact" domainObjectName="Contact"
+		 <table tableName="org_contact" domainObjectName="Contact"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="true"
 			selectByExampleQueryId="false">
