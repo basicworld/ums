@@ -117,13 +117,41 @@ layui.use('table', function(){
         layer.close(index);
       });
     } else if(obj.event === 'edit'){
+    	console.log(data);
+    	
     	layer.open({
-    		type:2,
+    		type:1,
   		  title: '详细信息',
   		  area: '600px' ,
-  		  content: "modal/orgEdit",
+  		  content: "<br><div style='margin: 0 20px 0 0;'><form class='layui-form' action='orgUpdate' method='Post'>"
+  		    +"<div style='display:none' class='layui-form-item'> <label class='layui-form-label'>ID</label> <div class='layui-input-block'> <input type='text' id='id' name='id' lay-verify='id' autocomplete='off'class='layui-input' readonly='readonly'> </div> </div>"
+  		    +"<div class='layui-form-item'> <label class='layui-form-label'>机构全称</label> <div class='layui-input-block'> <input type='text' id='fullname' name='fullname' lay-verify='fullname' autocomplete='off'placeholder='请输入标题' class='layui-input'> </div> </div>"
+  		    +"<div class='layui-form-item'> <label class='layui-form-label'>机构简称</label> <div class='layui-input-block'> <input type='text' id='briefname' name='briefname' lay-verify='briefname' autocomplete='off'placeholder='请输入标题' class='layui-input'> </div> </div>"
+  		    +"<div class='layui-form-item'> <label class='layui-form-label'>统一社会信用代码</label> <div class='layui-input-block'> <input type='text' id='orgcode' name='orgcode' lay-verify='orgcode' autocomplete='off'placeholder='请输入标题' class='layui-input'> </div> </div>"
+  		    +"<div style='display:none' class='layui-form-item'> <label class='layui-form-label'>联系人ID</label> <div class='layui-input-block'> <input type='text' id='contact_id' name='contact_id' lay-verify='contact_id' autocomplete='off'class='layui-input' readonly='readonly'> </div> </div>"
+  		    +"<div class='layui-form-item'> <label class='layui-form-label'>联系人姓名</label> <div class='layui-input-block'> <input type='text' id='contact_name' name='contact_name' lay-verify='contact_name' autocomplete='off'placeholder='请输入标题' class='layui-input'> </div> </div>"
+  		    +"<div class='layui-form-item'> <label class='layui-form-label'>联系人邮箱</label> <div class='layui-input-block'> <input type='text' id='contact_email' name='contact_email' lay-verify='contact_email' autocomplete='off'placeholder='请输入标题' class='layui-input'> </div> </div>"
+  		    +"<div class='layui-form-item'> <label class='layui-form-label'>联系人电话</label> <div class='layui-input-block'> <input type='text' id='contact_phone' name='contact_phone' lay-verify='contact_phone' autocomplete='off'placeholder='请输入标题' class='layui-input'> </div> </div>"
+  		    +"<div class='layui-form-item'> <label class='layui-form-label'>联系地址</label> <div class='layui-input-block'> <input type='text' id='contact_address' name='contact_address' lay-verify='contact_address' autocomplete='off'placeholder='请输入标题' class='layui-input'> </div> </div>"
+  		    +"<div style='display:none' class='layui-form-item'> <div class='layui-input-block'> <button class='layui-btn' lay-submit lay-filter='formDemo' id='formDemoSubmit'>立即提交</button> <button type='reset' class='layui-btn layui-btn-primary'>重置</button> </div> </div>"
+  		+"</form></div>",
   		  btn: ['保存','关闭'],
+			yes: function(index, layero){
+				layero.find('form').find('button[lay-submit]').click();
+			},
   		  shadeClose: false,
+  		  success: function(){
+  			  console.log(data.contact.email);
+  			  $("#id").val(data.id);
+  			  $("#fullname").val(data.fullname);
+  			  $("#briefname").val(data.briefname);
+  			  $("#orgcode").val(data.orgcode);
+  			  $("#contact_id").val(data.contact.id);
+  			  $("#contact_name").val(data.contact.name);
+  			  $("#contact_email").val(data.contact.email);
+  			  $("#contact_phone").val(data.contact.phone);
+  			  $("#contact_address").val(data.contact.address);
+  		  }
   		}); 
     }
   });
@@ -155,4 +183,15 @@ layui.use('table', function(){
   <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form;
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    layer.msg(JSON.stringify(data.field));
+    return false;
+  });
+});
 </script>
