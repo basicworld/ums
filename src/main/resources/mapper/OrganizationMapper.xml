@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wlfei.mapper.OrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.wlfei.pojo.Organization">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="fullname" jdbcType="VARCHAR" property="fullname" />
+    <result column="briefname" jdbcType="VARCHAR" property="briefname" />
+    <result column="orgcode" jdbcType="VARCHAR" property="orgcode" />
+    <result column="logolocation" jdbcType="VARCHAR" property="logolocation" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, fullname, briefname, orgcode, logolocation
+  </sql>
+  <select id="selectByExample" parameterType="com.wlfei.pojo.OrganizationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from org_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from org_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from org_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.wlfei.pojo.Organization" useGeneratedKeys="true">
+    insert into org_info (fullname, briefname, orgcode, 
+      logolocation)
+    values (#{fullname,jdbcType=VARCHAR}, #{briefname,jdbcType=VARCHAR}, #{orgcode,jdbcType=VARCHAR}, 
+      #{logolocation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.wlfei.pojo.Organization" useGeneratedKeys="true">
+    insert into org_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fullname != null">
+        fullname,
+      </if>
+      <if test="briefname != null">
+        briefname,
+      </if>
+      <if test="orgcode != null">
+        orgcode,
+      </if>
+      <if test="logolocation != null">
+        logolocation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fullname != null">
+        #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="briefname != null">
+        #{briefname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null">
+        #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="logolocation != null">
+        #{logolocation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wlfei.pojo.Organization">
+    update org_info
+    <set>
+      <if test="fullname != null">
+        fullname = #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="briefname != null">
+        briefname = #{briefname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null">
+        orgcode = #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="logolocation != null">
+        logolocation = #{logolocation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wlfei.pojo.Organization">
+    update org_info
+    set fullname = #{fullname,jdbcType=VARCHAR},
+      briefname = #{briefname,jdbcType=VARCHAR},
+      orgcode = #{orgcode,jdbcType=VARCHAR},
+      logolocation = #{logolocation,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
