@@ -129,3 +129,48 @@
 		</form>
 	</div>
 </div>
+<!-- 登陆注册modal -->
+<div id="loginRegModal" style="display: none">
+    <br>
+    <div id="" style='margin: 0 20px 0 0;'>
+        <form class='layui-form' action='' method='Post'>
+            <div style='display: none' class='layui-form-item'>
+                <label class='layui-form-label'>ID</label>
+                <div class='layui-input-block'>
+                    <input type='text' id='id' name='id' lay-verify='id'
+                        autocomplete='off' class='layui-input' readonly='readonly'>
+                </div>
+            </div>
+            <div id="name_div" class='layui-form-item'>
+                <label class='layui-form-label addRedStar'>用户名</label>
+                <div class='layui-input-block'>
+                    <input type='text' id='name' name='name' lay-verify='required'
+                        autocomplete='off' class='layui-input'>
+                </div>
+            </div>
+            <div id="password_div" class='layui-form-item'>
+                <label class='layui-form-label addRedStar'>密码</label>
+                <div class='layui-input-block'>
+                    <input type='password' id='password' name='password'
+                        lay-verify='required' autocomplete='off' placeholder='请输入密码'
+                        class='layui-input'>
+                </div>
+            </div>
+            <div id="password_confirm_div" class='layui-form-item'>
+                <label class='layui-form-label'>确认密码</label>
+                <div class='layui-input-block'>
+                    <input type='text' id='password2' name='password2'
+                        lay-verify='password' autocomplete='off' placeholder='请再次输入密码'
+                        class='layui-input'>
+                </div>
+            </div>
+            <div style='display: none' class='layui-form-item'>
+                <div class='layui-input-block'>
+                    <button class='layui-btn' lay-submit lay-filter='loginRegFilter'
+                        id='loginRegModalSubmitBtn'>立即提交</button>
+                    <button type='reset' class='layui-btn layui-btn-primary'>重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

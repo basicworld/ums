@@ -151,6 +151,11 @@
 					}
 				});
 			} else if (obj.event === 'del') {
+				var token = getToken();
+				if (token == "" || token === null) {
+					layer.msg("未登录用户无法进行删除");
+					return false;
+				}
 				layer.confirm('确定删除机构【' + data.fullname + '】吗？', function(index) {
 					$.ajax({
 						url : "orgDelete",
@@ -171,7 +176,11 @@
 					layer.close(index);
 				});
 			} else if (obj.event === 'edit') {
-				console.log(data);
+				var token = getToken();
+				if (token == "" || token === null) {
+					layer.msg("未登录用户无法进行编辑");
+					return false;
+				}
 
 				layer.open({
 					type : 1,
@@ -228,8 +237,7 @@
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
-	// 弹出层更新
-
+	// 机构更新用的弹出层
 	layui.use('form', function() {
 		var form = layui.form;
 		//监听提交
@@ -256,6 +264,12 @@
 <script>
 	// 新增机构弹出层
 	function showAddOrgModal() {
+		var token = getToken();
+		if (token == "" || token === null) {
+			layer.msg("未登录用户无法进行该操作");
+			return false;
+		}
+
 		var $ = layui.$;
 		layer.open({
 			type : 1,
@@ -274,7 +288,7 @@
 			}
 		});
 	}
-	// 弹出层新增
+	// 新增机构用的弹出层
 	layui.use('form', function() {
 		var form = layui.form;
 		//监听提交

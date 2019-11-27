@@ -18,6 +18,10 @@ public class PageController {
 	public String home(Model model) {
 		return "home";
 	}
+	@RequestMapping("login")
+	public String login(Model model) {
+		return "login";
+	}
 	@RequestMapping("modal/orgEdit")
 	public String modelOrgEdit() {
 		return "include/modal/orgEdit";
