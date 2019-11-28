@@ -46,10 +46,6 @@ public class MainController {
 		pager.setTotal(total);
 
 		contactService.fill(os); // 查询联系人
-		for (Organization o : os) {
-			System.out.println(o.getContact());
-
-		}
 
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("code", 0);
